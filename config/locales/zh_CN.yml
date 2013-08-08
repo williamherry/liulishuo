@@ -1,0 +1,3 @@
+zh_CN:
+  common:
+    sign_in_message: "%{username} 谢谢你登录了我们网站！你已经登录了 %{login_count} 次了"
