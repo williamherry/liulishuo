@@ -38,4 +38,8 @@ class User < ActiveRecord::Base
     update_attributes(total_login_time_in_minutes: current_login_time)
   end
 
+  def total_login_time
+    total_login_time_in_minutes + ((Time.now - last_login_time)/1.minute).to_i
+  end
+
 end
