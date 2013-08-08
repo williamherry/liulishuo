@@ -1,6 +1,9 @@
 <% if current_user %>
   <%= link_to "Sign out", sign_out_path %>
-  <%= t("common.signed_in_message", username: current_user.username, login_count: current_user.login_count) %>
+  <%= t("common.signed_in_message",
+        username: current_user.username,
+        login_count: current_user.login_count,
+        total_login_time: current_user.total_login_time_in_minutes) %>
 <% else %>
   <%= link_to "Sign in", sign_in_path %>
   <%= link_to "Sign up", sign_up_path %>

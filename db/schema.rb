@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808021217) do
+ActiveRecord::Schema.define(version: 20130808025323) do
 
   create_table "users", force: true do |t|
     t.string   "username"
@@ -19,7 +19,9 @@ ActiveRecord::Schema.define(version: 20130808021217) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "login_count",   default: 0
+    t.integer  "login_count",                 default: 0
+    t.datetime "last_login_time"
+    t.integer  "total_login_time_in_minutes", default: 0
   end
 
 end

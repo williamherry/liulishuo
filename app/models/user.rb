@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
     user = find_by_username(username)
     if user and user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user.increase_login_count
+      user.update_last_login_time
       user
     else
       nil
@@ -26,6 +27,15 @@ class User < ActiveRecord::Base
 
   def increase_login_count
     update_attributes(login_count: login_count + 1)
+  end
+
+  def update_last_login_time
+    update_attributes(last_login_time: Time.now)
+  end
+
+  def update_total_login_time_in_minutes
+    current_login_time = ((Time.now - last_login_time)/1.minute).to_i
+    update_attributes(total_login_time_in_minutes: current_login_time)
   end
 
 end
