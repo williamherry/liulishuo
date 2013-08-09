@@ -5,7 +5,7 @@ class Guest < ActiveRecord::Base
   }
 
   def reset_last_see_time
-    initialize if last_see_time.nil?
+    set_last_see_time if last_see_time.nil?
     update_total_active_time
     update_attributes(last_see_time: Time.now)
   end
@@ -19,7 +19,7 @@ class Guest < ActiveRecord::Base
       end
     end
 
-    def initialize
+    def set_last_see_time
       update_attributes(last_see_time: Time.now)
     end
 

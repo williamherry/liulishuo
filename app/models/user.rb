@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def authenticate_callback
-    initialize if last_see_time.nil?
+    set_last_see_time if last_see_time.nil?
     increase_login_count
     reset_last_see_time
   end
@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
       end
     end
 
-    def initialize
+    def set_last_see_time
       update_attributes(last_see_time: Time.now)
     end
 
