@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808053608) do
+ActiveRecord::Schema.define(version: 20130809095429) do
 
   create_table "anonymous_users", force: true do |t|
     t.string   "remote_ip"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20130808053608) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "login_count",                 default: 0
-    t.datetime "last_login_time"
+    t.datetime "last_see_time"
     t.integer  "total_login_time_in_minutes", default: 0
   end
 

@@ -8,14 +8,14 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :username
 
   scope :active, lambda {|period=5|
-    where("last_login_time > ?", period.minutes.ago)
+    where("last_see_time > ?", period.minutes.ago)
   }
 
   def self.authenticate(username, password)
     user = find_by_username(username)
     if user and user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user.increase_login_count
-      user.update_last_login_time
+      user.update_last_see_time
       user
     else
       nil
@@ -33,17 +33,17 @@ class User < ActiveRecord::Base
     update_attributes(login_count: login_count + 1)
   end
 
-  def update_last_login_time
-    update_attributes(last_login_time: Time.now)
+  def update_last_see_time
+    update_attributes(last_see_time: Time.now)
   end
 
   def update_total_login_time_in_minutes
-    current_login_time = ((Time.now - last_login_time)/1.minute).to_i
+    current_login_time = ((Time.now - last_see_time)/1.minute).to_i
     update_attributes(total_login_time_in_minutes: total_login_time_in_minutes + current_login_time)
   end
 
   def total_login_time
-    total_login_time_in_minutes + ((Time.now - last_login_time)/1.minute).to_i
+    total_login_time_in_minutes + ((Time.now - last_see_time)/1.minute).to_i
   end
 
 end
