@@ -13,5 +13,7 @@ class HomeController < ApplicationController
                                     )
       end
     end
+    @active_user_count = User.active.count
+    @active_anonymous_count = AnonymousUser.active.count
   end
 end

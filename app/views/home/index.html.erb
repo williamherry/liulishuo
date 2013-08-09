@@ -9,5 +9,10 @@
         total_visiting_time: @user.total_visiting_time) %>
 <% end %>
 
+<hr>
+<%= t("common.active_user_report",
+      active_user_count: @active_user_count,
+      active_anonymous_count: @active_anonymous_count) %>
+
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>

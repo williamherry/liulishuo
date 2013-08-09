@@ -1,5 +1,9 @@
 class AnonymousUser < ActiveRecord::Base
 
+  scope :active, lambda {|period=5|
+    where("last_see_time > ?", period.minutes.ago)
+  }
+
   def update_total_visiting_time_in_minutes
     current_visiting_time = ((Time.now - last_see_time)/1.minute).to_i
     update_attributes(total_visiting_time_in_minutes: total_visiting_time_in_minutes + current_visiting_time)

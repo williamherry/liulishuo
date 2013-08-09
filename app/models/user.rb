@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_uniqueness_of :username
 
+  scope :active, lambda {|period=5|
+    where("last_login_time > ?", period.minutes.ago)
+  }
+
   def self.authenticate(username, password)
     user = find_by_username(username)
     if user and user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
