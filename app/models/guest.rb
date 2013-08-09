@@ -1,4 +1,4 @@
-class AnonymousUser < ActiveRecord::Base
+class Guest < ActiveRecord::Base
 
   scope :active, lambda {|period=5|
     where("last_see_time > ?", period.minutes.ago)

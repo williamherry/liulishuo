@@ -2,4 +2,4 @@ zh_CN:
   common:
     signed_in_message: "%{username} 谢谢你登录了我们网站！你已经登录了 %{login_count} 次了,总共登录时间是 %{total_active_time} 分钟了"
     not_signed_in_message: "你好,陌生人!你没有登录,或者你还没有注册,但是你已经浏览这个页面 %{total_active_time} 分钟了."
-    active_user_report: "现在总共有 %{active_user_count} 个注册用户在查看这个网站，有 %{active_anonymous_count} 个陌生人在查看这个网站"
+    active_user_report: "现在总共有 %{active_users_count} 个注册用户在查看这个网站，有 %{active_guests_count} 个陌生人在查看这个网站"
