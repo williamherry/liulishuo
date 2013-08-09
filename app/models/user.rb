@@ -14,8 +14,7 @@ class User < ActiveRecord::Base
   def self.authenticate(username, password)
     user = find_by_username(username)
     if user and user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user.increase_login_count
-      user.update_last_see_time
+      user.authenticate_callback
       user
     else
       nil
@@ -29,21 +28,29 @@ class User < ActiveRecord::Base
     end
   end
 
-  def increase_login_count
-    update_attributes(login_count: login_count + 1)
+  def authenticate_callback
+    increase_login_count
+    reset_last_see_time
   end
 
-  def update_last_see_time
+  def reset_last_see_time
+    update_total_active_time
     update_attributes(last_see_time: Time.now)
   end
 
-  def update_total_login_time_in_minutes
-    current_login_time = ((Time.now - last_see_time)/1.minute).to_i
-    update_attributes(total_login_time_in_minutes: total_login_time_in_minutes + current_login_time)
+  def total_login_time
+    total_active_time + ((Time.now - last_see_time)/1.minute).to_i
   end
 
-  def total_login_time
-    total_login_time_in_minutes + ((Time.now - last_see_time)/1.minute).to_i
-  end
+  private
+
+    def increase_login_count
+      update_attributes(login_count: login_count + 1)
+    end
+
+    def update_total_active_time
+      current_active_time = ((Time.now - last_see_time)/1.minute).to_i
+      update_attributes(total_active_time: total_active_time + current_active_time)
+    end
 
 end

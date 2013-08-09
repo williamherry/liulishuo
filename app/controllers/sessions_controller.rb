@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     user = User.find(session[:user_id])
-    user.update_total_login_time_in_minutes
+    user.reset_last_see_time
     session[:user_id] = nil
     redirect_to root_url, :notice => "Signed out!"
   end

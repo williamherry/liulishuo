@@ -3,10 +3,10 @@
     <%= t("common.signed_in_message",
           username: @user.username,
           login_count: @user.login_count,
-          total_login_time: @user.total_login_time) %>
+          total_active_time: @user.total_active_time) %>
   <% else %>
     <%= t("common.not_signed_in_message",
-          total_visiting_time: @user.total_visiting_time) %>
+          total_active_time: @user.total_active_time) %>
   <% end %>
 </div>
 
