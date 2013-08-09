@@ -7,6 +7,8 @@ Liulishuo::Application.routes.draw do
 
   get "sign_up", to: "users#new", as: "sign_up"
 
+  get "report", to: "home#report", as: "report"
+
   resources :users
   resources :sessions
 

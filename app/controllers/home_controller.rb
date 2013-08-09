@@ -16,4 +16,12 @@ class HomeController < ApplicationController
     @active_user_count = User.active.count
     @active_anonymous_count = AnonymousUser.active.count
   end
+
+  def report
+    @active_user_count = User.active.count
+    @active_anonymous_count = AnonymousUser.active.count
+    render :json=>{:active_user_count => @active_user_count,
+                   :active_anonymous_count => @active_anonymous_count
+                  }.to_json
+  end
 end

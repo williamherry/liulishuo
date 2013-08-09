@@ -1,18 +1,19 @@
-<hr>
-<% if @user.respond_to? :username %>
-  <%= t("common.signed_in_message",
-        username: @user.username,
-        login_count: @user.login_count,
-        total_login_time: @user.total_login_time) %>
-<% else %>
-  <%= t("common.not_signed_in_message",
-        total_visiting_time: @user.total_visiting_time) %>
-<% end %>
+<div class="notice">
+  <% if @user.respond_to? :username %>
+    <%= t("common.signed_in_message",
+          username: @user.username,
+          login_count: @user.login_count,
+          total_login_time: @user.total_login_time) %>
+  <% else %>
+    <%= t("common.not_signed_in_message",
+          total_visiting_time: @user.total_visiting_time) %>
+  <% end %>
+</div>
 
-<hr>
-<%= t("common.active_user_report",
-      active_user_count: @active_user_count,
-      active_anonymous_count: @active_anonymous_count) %>
+<div class="notice">
+  <%= t("common.active_user_report",
+        active_user_count: @active_user_count,
+        active_anonymous_count: @active_anonymous_count) %>
+</div>
 
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h2>this is the single page application</h2>
