@@ -1,5 +1,7 @@
 == README
 
+demo: http://enigmatic-garden-7652.herokuapp.com/
+
 === FQA
 
 * how did I track user's login count
