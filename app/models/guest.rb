@@ -14,7 +14,9 @@ class Guest < ActiveRecord::Base
 
     def update_total_active_time
       current_active_time = ((Time.now - last_see_time)/1.minute).to_i
-      update_attributes(total_active_time: total_active_time + current_active_time)
+      unless current_active_time <= 5
+        update_attributes(total_active_time: total_active_time + current_active_time)
+      end
     end
 
     def initialize
