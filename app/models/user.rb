@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
   def update_total_login_time_in_minutes
     current_login_time = ((Time.now - last_login_time)/1.minute).to_i
-    update_attributes(total_login_time_in_minutes: current_login_time)
+    update_attributes(total_login_time_in_minutes: total_login_time_in_minutes + current_login_time)
   end
 
   def total_login_time

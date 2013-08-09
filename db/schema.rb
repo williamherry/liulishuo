@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808025323) do
+ActiveRecord::Schema.define(version: 20130808053608) do
+
+  create_table "anonymous_users", force: true do |t|
+    t.string   "remote_ip"
+    t.datetime "last_see_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "total_visiting_time_in_minutes", default: 0
+  end
 
   create_table "users", force: true do |t|
     t.string   "username"
