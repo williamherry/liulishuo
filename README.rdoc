@@ -1,5 +1,27 @@
 == README
 
+=== FQA
+
+* how did I track user's login count
+
+simple, every time one user login, increase login_count
+
+* how did I track login user's total active time
+
+every time one user perform some action(visit home page, login, etc.), add minutes of (Time.now - last_see_time) to total_active_time
+
+* how did I track anonymous user's active time
+
+there one table `guests` for anonymous user, `last_see_time` and `total_active_time` and same method with registerd user
+
+* how did I know a user is visiting the page right now to get the amount of active user
+
+I don't know but I can guess: last_see_time in 5 minutes
+
+* where is the report api
+
+/report
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
