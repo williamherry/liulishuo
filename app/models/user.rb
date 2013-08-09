@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def authenticate_callback
+    initialize if last_see_time.nil?
     increase_login_count
     reset_last_see_time
   end
@@ -51,6 +52,10 @@ class User < ActiveRecord::Base
     def update_total_active_time
       current_active_time = ((Time.now - last_see_time)/1.minute).to_i
       update_attributes(total_active_time: total_active_time + current_active_time)
+    end
+
+    def initialize
+      update_attributes(last_see_time: Time.now)
     end
 
 end
